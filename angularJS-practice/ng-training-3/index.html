@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Training</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body ng-app="AppModule">
+    <header class="container">
+        <h1>Angular Training</h1>
+        <hr>
+        <h2>Práctica #3</h2>
+    </header>
+    <main class="container">
+        <div>
+            <h3></h3>
+            <ul class="list-group">
+                <!--Parte 1-->
+                <li class="list-group-item" ng-controller="UserController">
+                    <h4>Parte #1: Ocultar etiqueta con ng-if</h4>
+                    <div ng-if="isShow">
+                        <h5>Este texto puede ocultarse</h5>
+                    </div>
+                    <button class="btn btn-dark" ng-click="Hide()">
+                        <span ng-if="isShow">Ocultar Texto
+                        </span>
+                        <span ng-if="!isShow">Mostrar Texto
+                        </span>
+                    </button>
+                </li>
+
+                <!--Parte 2-->
+                <li class="list-group-item" >
+                    <h4>Parte #2: Incluir contenido de otro html directamente</h4>
+                    <p>Se puede incluir directamente con ng-include="./extra.html"</p>
+
+                    <div ng-include="'./extra.html'"></div>
+
+                </li>
+
+                <!--Parte 3-->
+                <li class="list-group-item" >
+                    <h4>Parte #3: Crear componente explicito</h4>
+                    <p>Se escribe el contenido html directo en el componente</p>  
+                    <componente-explicito></componente-explicito>
+                </li>
+
+                <!--Parte 3-->
+                <li class="list-group-item" >
+                    <h4>Parte #4: Crear componente implícito</h4>
+                    <p>Se coloca la ruta del html</p> 
+                    <componente-implicito></componente-implicito>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div>
+            <h3>Apuntes</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    JavaScript tiene ciclos de vida <br>
+                    //Este on init no existe en html xq es algo propio de javsascript <br>
+                    <code>
+                        this.$onInit = function() { <br>
+                            console.log("Este metodo se ejecuta de forma automatica al construirse el controlador"); <br>
+                        }
+                    </code> <br>
+                    //Se ejecuta al destruirse sel controlador<br>
+                    <code>
+                        this.$onDestroy = function() { <br>
+                            console.log("Este metodo se ejecuta de forma automatica al destruirse el controlador"); <br>
+                        }
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    Se pueden ocular o mostrar etiquetas html con ng-if="Variable" <br>
+                    <code>
+                        $scope.isShow = true; <br>
+                        $scope.Hide = function(){ <br>
+                            $scope.isShow = !$scope.isShow; <br>
+                        }
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    Se puede incluir contenido de otros html con ng-include="Ruta del html"
+                </li>
+                <li class="list-group-item">
+                    Se puede crear un componente y en este declarar directramente el html o contenido que se quiere mostrar <br>
+                    <code>
+                        app.component('componenteExplicito', { <br>
+                            template: [ <br>
+                                'etiquta-1', <br>
+                                'etiqueta-2' <br>
+                              ].join('') <br>
+                        });
+                    </code>
+                </li>
+                <li class="list-group-item"> 
+                    Se puede crear un componente y declarar la url de un html que se desee incluir
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!--Scripts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js.map"></script> -->
+    <script src="./js/app-module.js"></script>
+    <script src="./js/user-controller.js"></script>
+    <script src="./js/componente-explicito.js"></script>
+    <script src="./js/componente-implicito.js"></script>
+
+</body>
+</html>
